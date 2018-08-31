@@ -1,0 +1,37 @@
+entity,value,synonyms
+UpdateFields,email,
+UpdateFields,address,
+UpdateFields,firstname,
+UpdateFields,lastname,
+UpdateFields,phone,
+BasicRes,test1,
+BasicRes,test2,
+Facilities,mckeldin%20Library,library:lib:Gen Library:Gen lib
+Facilities,morill%20Hall,Gen Hall:G Hall:ghall
+Facilities,Susquehanna%20Hall,Sass Hall:Sasshall:shall:s hall
+Facilities,Symons%20Hall,Iaas Hall:iass:iaashall
+Facilities,Taliaferro%20hall,Integrations Hall:integ hall:integhall
+Facilities,Tawes%20hall,Analytics Hall:analytics:ahall
+Facilities,Turner%20hall,Security Hall:securities:securehall:secure hall
+Facilities,public%20health%20school,Gen School of health:health school:hschool
+Facilities,memorial%20chapel,Gen Chapel:gchapel:chapel
+Facilities,Van%20Munching%20hall,App Dev Hall:appdev:app hall
+Facilities,university%20commons,university commons:gen u commons
+Facilities,Woods%20hall,Reston Hub Hall:reston hall:rhhall
+Facilities,ellicot%20hall,santa hall:santa monica hub hall:smhhall
+Facilities,Samuel%20Riggs%20IV%20Alumni%20Center,alumni center:Gen U alumni center
+Facilities,Potomac%20building,Rsearch & Development Building:Rd bldg:r&d
+Facilities,Severn%20building,Cloud Building:cloud bldg:cbldg
+Facilities,Biomolecular%20Sciences%20building,Science buildng:science bldg:science
+Facilities,Preinkert%20Field%20house,field house:fhouse:university field house:gen field house
+Facilities,Bioscience%20Research%20building,Innovations Building:innovation:inovate bldg:innovate
+Facilities,Adele%20H%20Stamp%20Student%20union,student union:student center:gen u student center
+Facilities,Eppley%20recreation%20center,Rec Center:recreation center:recreation:rec
+Facilities,union%20lane%20garage,North Garage:ngarage
+Facilities,Capital+One+Field+at+Byrd+Stadium,field:University field:Gen u field
+Facilities,Manufacturing%20building,production building:production:produce bldg
+Facilities,Regents%20Drive%20garage,south garage:sgarage
+Facilities,xfinity%20center,conference center:ccenter:main event
+Facilities,Clarice%20Smith%20Performing%20Arts%20Center,Arts Center:Performing Arts Center:theater
+ServiceType,Get my info,basic:basic info:emp info
+ServiceType,Update my Info,update:update info:emp upd:emp update:update emp

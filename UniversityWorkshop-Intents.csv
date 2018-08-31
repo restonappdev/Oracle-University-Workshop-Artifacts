@@ -1,0 +1,40 @@
+query,topIntent
+directions to the field,Location
+where is the library,Location
+where is north garage,Location
+take me to the library,Location
+take me to university field,Location
+take me to science building,Location
+where is saas hall,Location
+find me,Location
+directions to recreation center,Location
+take me to recreation center,Location
+where is the field,Location
+find me the north garage,Location
+directions to university commons,Location
+where is  building,Location
+where is the recreation center,Location
+where is the health school,Location
+take me to south garage,Location
+find me the saas hall,Location
+directions to the hall,Location
+I want to go to the library,Location
+find me the building,Location
+directions to the garage,Location
+i want to go to  university commons,Location
+i want to go to the university field,Location
+find me the library,Location
+i want to go to go to north garage,Location
+directions to the building,Location
+directions to the library,Location
+i want to go to go to saas hall,Location
+where,Location
+hello,StartChat
+hi,StartChat
+help,StartChat
+update address,HCMService
+get professor,HCMService
+professors,HCMService
+get my profile information,HCMService
+check profile,HCMService
+update email,HCMService
