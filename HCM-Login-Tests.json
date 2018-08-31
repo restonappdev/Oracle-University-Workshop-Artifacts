@@ -1,0 +1,346 @@
+{
+   "actionList": [
+      {
+         "elementTrigger": "close",
+         "enabled": true,
+         "eventTrigger": "valueChanged",
+         "ids": [
+            "close"
+         ],
+         "trigger": "paneValid",
+         "type": "hideElements"
+      },
+      {
+         "elementTrigger": "close",
+         "enabled": true,
+         "eventTrigger": "valueChanged",
+         "parameters": [
+            {
+               "name": "username",
+               "value": "{username}"
+            },
+            {
+               "name": "password",
+               "value": "{password}"
+            }
+         ],
+         "trigger": "paneValid",
+         "type": "exitToBot"
+      }
+   ],
+   "authList": [
+   ],
+   "chatbox": {
+      "active": true,
+      "build": 3,
+      "builder": {
+         "editCount": 30
+      },
+      "code": "Copy_of_HCM_Login",
+      "id": 6,
+      "trashed": false
+   },
+   "displayList": [
+      {
+         "allowDismiss": false,
+         "elementList": [
+            {
+               "actionList": [
+               ],
+               "detail": {
+                  "agentCanEdit": false,
+                  "agentMasked": false,
+                  "allowCallback": true,
+                  "customerCanEdit": true,
+                  "parameterizedUrl": "https://hcm-login.herokuapp.com?callback=",
+                  "parameters": [
+                  ],
+                  "required": false,
+                  "showAgent": true,
+                  "showUrl": false,
+                  "type": "iframe"
+               },
+               "id": "embeddedWebsite_1",
+               "initiallyEnabled": true,
+               "initiallyVisible": true,
+               "innerStyles": {
+                  "backgroundColor": "#FFFFFF",
+                  "borderColor": "#333",
+                  "borderRadius": "0px",
+                  "borderStyle": "solid",
+                  "borderWidth": "2px",
+                  "color": "#333333",
+                  "elementClass": "",
+                  "fontSize": "13px",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "height": "500px",
+                  "labelClass": "",
+                  "textAlign": "left"
+               },
+               "outerStyles": {
+                  "marginBottom": "12px",
+                  "marginLeft": "0",
+                  "marginRight": "0",
+                  "marginTop": "0",
+                  "paddingBottom": "0",
+                  "paddingLeft": "0",
+                  "paddingRight": "0",
+                  "paddingTop": "0",
+                  "width": "100%"
+               },
+               "since": 0,
+               "tooltip": ""
+            },
+            {
+               "actionList": [
+               ],
+               "detail": {
+                  "agentCanEdit": false,
+                  "agentMasked": false,
+                  "customerCanEdit": true,
+                  "elementValidation": {
+                     "maxLength": 0,
+                     "maxLengthErrorMessage": "This field does not accept more than {$count} characters.",
+                     "minLength": 0,
+                     "minLengthErrorMessage": "This field requires at least {$count} characters.",
+                     "regex": "",
+                     "regexErrorMessage": "",
+                     "required": false,
+                     "requiredErrorMessage": "This is required",
+                     "snippet": "",
+                     "validateMaxLength": false,
+                     "validateMinLength": false,
+                     "validateRegex": false,
+                     "validateSnippet": false
+                  },
+                  "label": "username",
+                  "labelInline": false,
+                  "maxLength": 256,
+                  "placeholder": "",
+                  "required": false,
+                  "type": "singleLineInput"
+               },
+               "id": "username",
+               "initiallyEnabled": true,
+               "initiallyVisible": false,
+               "innerStyles": {
+                  "backgroundColor": "#FFFFFF",
+                  "borderColor": "#ccc",
+                  "borderRadius": "4px",
+                  "borderStyle": "solid",
+                  "borderWidth": "1px",
+                  "color": "#333333",
+                  "elementClass": "",
+                  "fontSize": "13px",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "labelClass": "",
+                  "textAlign": "left"
+               },
+               "outerStyles": {
+                  "marginBottom": "12px",
+                  "marginLeft": "0",
+                  "marginRight": "0",
+                  "marginTop": "0",
+                  "paddingBottom": "0",
+                  "paddingLeft": "0",
+                  "paddingRight": "0",
+                  "paddingTop": "0",
+                  "width": "100%"
+               },
+               "since": 0,
+               "tooltip": ""
+            },
+            {
+               "actionList": [
+               ],
+               "detail": {
+                  "agentCanEdit": false,
+                  "agentMasked": false,
+                  "customerCanEdit": true,
+                  "elementValidation": {
+                     "maxLength": 0,
+                     "maxLengthErrorMessage": "This field does not accept more than {$count} characters.",
+                     "minLength": 0,
+                     "minLengthErrorMessage": "This field requires at least {$count} characters.",
+                     "regex": "",
+                     "regexErrorMessage": "",
+                     "required": false,
+                     "requiredErrorMessage": "This is required",
+                     "snippet": "",
+                     "validateMaxLength": false,
+                     "validateMinLength": false,
+                     "validateRegex": false,
+                     "validateSnippet": false
+                  },
+                  "label": "password",
+                  "labelInline": false,
+                  "maxLength": 256,
+                  "placeholder": "",
+                  "required": false,
+                  "type": "singleLineInput"
+               },
+               "id": "password",
+               "initiallyEnabled": true,
+               "initiallyVisible": false,
+               "innerStyles": {
+                  "backgroundColor": "#FFFFFF",
+                  "borderColor": "#ccc",
+                  "borderRadius": "4px",
+                  "borderStyle": "solid",
+                  "borderWidth": "1px",
+                  "color": "#333333",
+                  "elementClass": "",
+                  "fontSize": "13px",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "labelClass": "",
+                  "textAlign": "left"
+               },
+               "outerStyles": {
+                  "marginBottom": "12px",
+                  "marginLeft": "0",
+                  "marginRight": "0",
+                  "marginTop": "0",
+                  "paddingBottom": "0",
+                  "paddingLeft": "0",
+                  "paddingRight": "0",
+                  "paddingTop": "0",
+                  "width": "100%"
+               },
+               "since": 0,
+               "tooltip": ""
+            },
+            {
+               "actionList": [
+               ],
+               "detail": {
+                  "generatedHtml": "<p>Login successful! Click <strong>Close</strong> and return back to chatbot screen.</p>\n",
+                  "text": "Login successful! Click **Close** and return back to chatbot screen.",
+                  "type": "markdown"
+               },
+               "id": "success1",
+               "initiallyEnabled": true,
+               "initiallyVisible": false,
+               "innerStyles": {
+                  "backgroundColor": "#FFFFFF",
+                  "borderColor": "#333",
+                  "borderRadius": "0px",
+                  "borderStyle": "solid",
+                  "borderWidth": "0px",
+                  "color": "#333333",
+                  "elementClass": "",
+                  "fontSize": "13px",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "labelClass": "",
+                  "textAlign": "left"
+               },
+               "outerStyles": {
+                  "marginBottom": "12px",
+                  "marginLeft": "0",
+                  "marginRight": "0",
+                  "marginTop": "0",
+                  "paddingBottom": "0",
+                  "paddingLeft": "0",
+                  "paddingRight": "0",
+                  "paddingTop": "0",
+                  "width": "100%"
+               },
+               "since": 0,
+               "tooltip": ""
+            },
+            {
+               "actionList": [
+               ],
+               "detail": {
+                  "agentCanEdit": false,
+                  "agentMasked": false,
+                  "buttonClass": "InteractiveButton",
+                  "customerCanEdit": true,
+                  "elementValidation": {
+                     "maxLength": 0,
+                     "maxLengthErrorMessage": "This field does not accept more than {$count} characters.",
+                     "minLength": 0,
+                     "minLengthErrorMessage": "This field requires at least {$count} characters.",
+                     "regex": "",
+                     "regexErrorMessage": "",
+                     "required": false,
+                     "requiredErrorMessage": "This is required",
+                     "snippet": "",
+                     "validateMaxLength": false,
+                     "validateMinLength": false,
+                     "validateRegex": false,
+                     "validateSnippet": false
+                  },
+                  "label": "Close",
+                  "required": false,
+                  "type": "button"
+               },
+               "id": "close",
+               "initiallyEnabled": true,
+               "initiallyVisible": false,
+               "innerStyles": {
+                  "backgroundColor": "#598EC7",
+                  "borderColor": "#333",
+                  "borderRadius": "3px",
+                  "borderStyle": "solid",
+                  "borderWidth": "0px",
+                  "color": "#FFFFFF",
+                  "elementClass": "",
+                  "fontSize": "14px",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "labelClass": "",
+                  "textAlign": "center"
+               },
+               "outerStyles": {
+                  "marginBottom": "12px",
+                  "marginLeft": "0",
+                  "marginRight": "0",
+                  "marginTop": "0",
+                  "paddingBottom": "0",
+                  "paddingLeft": "0",
+                  "paddingRight": "0",
+                  "paddingTop": "0",
+                  "width": "100%"
+               },
+               "since": 0,
+               "tooltip": ""
+            }
+         ],
+         "id": "PANE_1",
+         "validation": {
+            "asYouGo": true,
+            "errorMessage": "Please see errors above before continuing.",
+            "snippet": "",
+            "usingSnippet": false
+         }
+      }
+   ],
+   "externalDataList": [
+   ],
+   "general": {
+      "author": "Unknown",
+      "created": "Fri Aug 03 2018",
+      "icon": "https://cdn.tetrapod.io/chatbox/template-images/blank.png",
+      "inviteMessageList": [
+         "Click to join this Instant App {link}"
+      ],
+      "name": "HCM Login Tests"
+   },
+   "snippetList": [
+      {
+         "elementTrigger": "embeddedWebsite_1",
+         "eventTrigger": "valueChanged",
+         "snippetCode": "obj = JSON.parse(newValue);\napp.setElementValue(\"username\",obj.username);\napp.setElementValue(\"password\",obj.password);\napp.showElements(\"success1\", \"close\");\nchatbox.openWebsite(\"ubot://\",\"Click open to return to the app.\")"
+      },
+      {
+         "eventNameTrigger": "new_trigger",
+         "eventTrigger": "callback",
+         "snippetCode": ""
+      }
+   ],
+   "version": 6
+}
