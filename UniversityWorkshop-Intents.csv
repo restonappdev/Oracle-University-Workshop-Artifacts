@@ -1,4 +1,8 @@
 query,topIntent
+exit,StopChat
+exit the service,StopChat
+stop,StopChat
+stop the service,StopChat
 directions to the field,Location
 where is the library,Location
 where is north garage,Location
@@ -32,9 +36,3 @@ where,Location
 hello,StartChat
 hi,StartChat
 help,StartChat
-update address,HCMService
-get professor,HCMService
-professors,HCMService
-get my profile information,HCMService
-check profile,HCMService
-update email,HCMService
