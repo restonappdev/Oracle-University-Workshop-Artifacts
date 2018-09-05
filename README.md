@@ -15,6 +15,12 @@
 * University_Workshop_components.zip
   - This zip file is used to be uploaded in 'API' -> implementation for University Workshop Bot.
 
+* university.raml
+  - This raml file is used to be copied while you are creating API service.
+
+* universityworkshopentire.ymal
+  - this ymal file is the entire dialog flow YMAL code for University Workshop Bot.
+
 * UniversityWorkshop-FAQ_University_Test-allqna.csv
   - This csv file is used to be imported while Q&A tranning for University Workshop Bot.
 

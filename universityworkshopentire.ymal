@@ -1,0 +1,408 @@
+metadata:
+  platformVersion: 1.0
+main: true
+name: UniversityBot
+context:
+  variables:
+    facility: "Facilities"
+    intentString: "string"
+    iResult: "nlpresult"
+    serviceType: "ServiceType"
+    botservice: "string"
+    #HERE - Copy & Paste HCM initial variables below
+    fullname: "string"
+    fieldattr: "string"
+    login: "string"
+    testu: "string"
+    testp: "string"
+    isconfirm: "string"
+    isqna: "string"
+    iscommon: "string"
+    isget: "string"
+    updateAttr: "UpdateFields"
+    updatefield: "string"
+    updateinfo: "string"
+    
+states:
+  WelcomeChat:
+    component: "System.CommonResponse"
+    properties:
+      metadata:
+        responseItems:
+        - type: "attachment"
+          attachmentType: "image"
+          name: "image"
+          attachmentUrl: "https://i.imgur.com/edzHyxr.png"
+      processUserMessage: false
+      keepTurn: True
+    transitions: {}
+    
+  # HERE - Copy HCM set variable YAML code below:
+  setUsername:
+    component: "System.SetVariable"
+    properties:
+      variable: "testu"
+      value: "not set"
+    transitions: {}
+  setPassword:
+    component: "System.SetVariable"
+    properties:
+      variable: "testp"
+      value: "not set"
+    transitions: {}
+  
+  # HERE - Replace new Main intent YMAL code below:
+  Intent:
+    component: "System.Intent"
+    properties:
+      variable: "iResult"
+      confidenceThreshold: 0.4
+      qnaEnable: true
+    transitions:
+      actions:
+        StartChat: "HelloChat"
+        StopChat: "ExitChat"
+        Location: "locationIntro"
+        qna: "qna"
+        unresolvedIntent: "Unresolved"
+         
+  HelloChat:
+    component: "System.List"
+    properties:
+      options: "Student, Visitor"
+      prompt: "Welcome to Gen University! You can ask me any question. But first tell me, are you a? (To end, type 'exit')"
+      variable: "botservice"
+    transitions: {}
+  pickOneService:
+    component: "System.ConditionEquals"
+    properties:
+      source: "${botservice}"
+      value: "Visitor"
+    # HERE - Replace new pickOneService -> transitions YMAL code below"
+    transitions:
+      actions:
+        equal: "startQnAService"
+        notequal: "startHCMService"
+        
+  # HERE - Copy & paste Q&A states' workflow below:
+  startQnAService:
+    component: "System.ResetVariables"
+    properties:
+      variableList: "iResult,isqna"
+    transitions: {}
+  askQnAService:
+    component: "System.CommonResponse"
+    properties:
+      metadata:
+        responseItems:
+        - type: "text"
+          text: "Welcome! Ask me a question. Example: What are the library hours?"
+          name: "Sorry"
+          separateBubbles: true
+      processUserMessage: false
+    transitions: {}
+  qna:
+    component: "System.QnA"
+    properties:
+      minimumMatch: "100%,100%"
+      matchListLimit: 5
+      enableCategoryDrilldown: false
+      resultLayout: "vertical"
+      exitLabel: "Exit Questions"
+      keepTurn:
+        next: true
+        none: true
+        exit: true
+        textReceived: true 
+    transitions:
+      actions:
+        none: "Unresolved"
+      next: "confirmQnA"
+  confirmQnA:
+    component: "System.List"
+    properties:
+      options: "Yes,No"
+      prompt: "Do you need more FAQ questions?"
+      variable: "isqna"
+    transitions: {}
+  isQna:
+    component: "System.ConditionEquals"
+    properties:
+      source: "${isqna}"
+      value: "Yes"
+    transitions:
+      actions:
+        equal: "startQnAService"
+        notequal: "resetGetVariables"
+  
+  # HERE - Copy & Paste HCM Service states' workflow below:
+  startHCMService:
+    component: "System.ConditionEquals"
+    properties:
+      source: "${botservice}"
+      value: "Student"
+    transitions:
+      actions:
+        equal: "askHCMService"
+        notequal: "ExitChat"
+  askHCMService:
+    component: "System.Text"
+    properties:
+      prompt: "Welcome!\nYou can view or update your profile. Please enter your name."
+      variable: "fullname"
+    transitions:
+      actions:
+        cancel: "Intent"
+      next: "askServiceType"
+  askServiceType:
+    component: "System.List"
+    properties:
+      options: "${serviceType.type.enumValues}"
+      prompt: "Would you like to check your current profile or update '${fullname}' profile?"
+      variable: "serviceType"
+    transitions: 
+      actions: 
+        cancel: "Intent"
+      next: "signInOrnot"
+  # HCM login workflow
+  signInOrnot:
+    component: "System.ConditionEquals"
+    properties:
+      source: "${testu}:${testp}"
+      value: "not set:not set"
+    transitions:
+      actions:
+        equal: "interactive"
+        notequal: "serviceSwitch"
+  interactive:
+    component: "System.Interactive"
+    properties:
+      id: "HCM_Login_Tests"
+      sourceVariableList: ""
+      variable: "login"
+      prompt: "Please click the link below to login" 
+      linkLabel: "Login"
+    transitions: {}
+  resetUsername:
+    component: "System.SetVariable"
+    properties:
+      variable: "testu"
+      value: "${login.value.username}"
+    transitions: {}
+  resetPassword:
+    component: "System.SetVariable"
+    properties:
+      variable: "testp"
+      value: "${login.value.password}"
+    transitions: {}
+  serviceSwitch:
+    component: "System.ConditionEquals"
+    properties:
+      source: "${serviceType}"
+      value: "Get my info"
+    transitions:
+      actions: 
+        equal: "getReportBasic"
+        notequal: "whichInfo"
+  getReportBasic:
+    component: "HCMBasicWebService"
+    properties:
+      fullname: "${fullname}"
+      fieldattr: "${fieldattr}"
+      testu: "${testu}"
+      testp: "${testp}"
+    transitions:
+      actions:
+        cancel: "Intent"
+      next: "confirmGet"
+  confirmGet:
+    component: "System.List"
+    properties:
+      options: "Yes,No"
+      prompt: "Do you want to make any changes to your profile?"
+      variable: "isget"
+    transitions: {}
+  isGet:
+    component: "System.ConditionEquals"
+    properties:
+      source: "${isget}"
+      value: "Yes"
+    transitions:
+      actions:
+        equal: "whichInfo"
+        notequal: "resetGetVariables"
+ # Reset variables component
+  resetGetVariables:
+    component: "System.ResetVariables"
+    properties:
+      variableList: "iResult,fullname,serviceType,botservice,isconfirm,isqna,iscommon,isget,fieldattr"
+    transitions:
+      next: "HelloChat"
+  
+ # HCM Update Service Dialog Flow
+  whichInfo:
+    component: "System.List"
+    properties:
+      options: "${updateAttr.type.enumValues}"
+      prompt: "What information would you like to update?"
+      variable: "updateAttr"
+    transitions: {}
+  setUpdateField:
+    component: "System.SetVariable"
+    properties:
+      variable: "updatefield"
+      value: "${updateAttr}"
+    transitions: {}
+  resetUpdateVariables:
+    component: "System.ResetVariables"
+    properties:
+      variableList: "iResult,updateinfo,isconfirm"
+    transitions: {}
+  setUpdateData: 
+    component: "System.Text"
+    properties: 
+      prompt: "Okay! Please input your new ${updatefield}."
+      variable: "updateinfo"
+    transitions: {}
+  confirmUpdate:
+    component: "System.List"
+    properties:
+      options: "Yes,No"
+      prompt: "Are you sure you want to update '${updateAttr}' to '${updateinfo}'"
+      variable: "isconfirm"
+    transitions: {}
+  isUpdate:
+    component: "System.ConditionEquals"
+    properties:
+      source: "${isconfirm}"
+      value: "Yes"
+    transitions:
+      actions:
+        equal: "updateService"
+        notequal: "resetUpdateVariables"
+  updateService:
+    component: "HCMUpdateService"
+    properties:
+      fullname: "${fullname}"
+      updatefield: "${updatefield}"
+      updateinfo: "${updateinfo}"
+      testu: "${testu}"
+      testp: "${testp}"
+    transitions: {}
+  resetUpdateVariables1:
+    component: "System.ResetVariables"
+    properties:
+      variableList: "iResult,updateinfo,isconfirm,updateAttr,isget"
+    transitions:
+      actions:
+        cancel: "Intent"
+      next : "getReportBasic"
+
+ # DialogFlow for Location Services
+  locationIntro:
+    component: "System.SetVariable"
+    properties:
+      variable: "intentString"
+      value: "${iResult.value.query}"
+    transitions: {}
+  locationMatch:
+    component: "System.MatchEntity"
+    properties:
+      sourceVariable: "intentString"
+      variable: "facility"
+    transitions:
+      actions:
+        match: "locationDeepLink"
+        nomatch: "locationNoMatch"
+  locationDeepLink:
+    component: "System.CommonResponse"
+    properties:
+      keepTurn: true
+      metadata:
+        responseItems:
+        - text: "Select Your Map"
+          type: "text"
+          name: "map"
+          separateBubbles: true
+          actions:
+          - label: "Google Map"
+            type: "url"
+            name: "google"
+            payload:
+              url: "https://www.google.com/maps/dir/?api=1&destination=${facility}+collegepark+maryland" 
+          - label: "Apple Map"
+            type: "url"
+            name: "apple"
+            payload:
+              url: "http://maps.apple.com/?daddr=${facility}+collegepark+maryland" 
+      processUserMessage: false
+    transitions:
+      return: "done"
+  locationNoMatch:
+    component: "System.Output"
+    properties:
+      text: "Sorry, I cannot find the facility you said." 
+      keepTurn: true
+    transitions:
+      return: "done"
+  
+  ExitChat:
+    component: "System.CommonResponse"
+    properties:
+      metadata:
+        responseItems:
+        - type: "text"
+          text: "Thank you for you using Gen University Bot"
+          name: "stop"
+          separateBubbles: true
+      processUserMessage: false
+      keepTurn: True
+    transitions:
+      return: "done"
+      
+  # Error or Exception or Unresolved Handling
+  Unresolved:
+    component: "System.CommonResponse"
+    properties:
+      metadata:
+        responseItems:
+        - type: "text"
+          text: "Sorry, I do not understand you, I am not human. Please try another\
+            \ sentence."
+          name: "Sorry"
+          separateBubbles: true
+      processUserMessage: false
+      keepTurn: True
+    transitions:
+      next: "HelloChat"
+  ActionNoLongerAvailable:
+    component: "System.CommonResponse"
+    properties:
+      metadata:
+        responseItems:
+        - type: "text"
+          text: "Sorry, this action is no longer available."
+          name: "action error"
+          separateBubbles: true
+      processUserMessage: false
+      keepTurn: True
+    transitions:
+      next: "HelloChat"
+  DefaultErrorHandler:
+    component: "System.CommonResponse"
+    properties:
+      metadata:
+        responseItems:
+        - type: "text"
+          text: "Please make sure you type the correct fullname or login username/password"
+          name: "default error"
+          separateBubbles: true
+      processUserMessage: false
+      keepTurn: True
+    transitions:
+      next: "HelloChat"
+      
+defaultTransitions:
+  error: "DefaultErrorHandler"
+  actions:
+    unexpectedAction: "ActionNoLongerAvailable"
