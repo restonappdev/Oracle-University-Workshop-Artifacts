@@ -18,7 +18,7 @@
 - **university.raml**
   - This raml file is used to be copied while you are creating API service.
 
-- **universityworkshopentire.ymal**
+- **universityworkshopentire.yaml**
   - this ymal file is the entire dialog flow YMAL code for University Workshop Bot.
 
 - **UniversityWorkshop-FAQ_University_Test-allqna.csv**
