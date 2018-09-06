@@ -1,6 +1,6 @@
 # Autonomous Mobile Cloud Enterprise - Intelligent Bot: Hands-On Workshop - Gen University Bot
 
-* HCM-Login-Tests.json
+- **HCM-Login-Tests.json**
   - This json file is used to be imported in 'Instant Apps' for University Workshop Bot.
 
 * UniversityWorkshopBot.zip
